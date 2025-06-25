@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.25b
+// @version      2025.06.26a
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=hibbard.eu
+// @icon         https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5d3.png
 // @grant        none
 // @require      http://code.jquery.com/jquery-latest.js
 // ==/UserScript==
