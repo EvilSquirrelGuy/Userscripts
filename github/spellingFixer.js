@@ -1,18 +1,18 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26a
+// @version      2025.06.26b
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=hibbard.eu
+// @icon         https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.0.2/assets/72x72/1f1ec-1f1e7.png
 // @grant        none
 // @require      http://code.jquery.com/jquery-latest.js
 // ==/UserScript==
 
 // common replacement rules
 const patterns = [
-  { regex: /(?<=[lbmv])or(?=[asfyi]|\b)/g, replaceWith: "our" }, // [col]or -> our
+  { regex: /(?<=[lbmv])or(?=[asfyi]|\b)/g, replaceWith: "our", ignore: ["collaborat", "elaborat"]}, // [col]or -> our
   { regex: /(?<=\w[cdglmnrstv])([iy])z(?=[eai])/g, replaceWith: "$1s" }, // [organ]ize -> ise, [anal]yze -> yse
   { regex: /(?<=\b([Dd]ef|[Oo]ff|[Ll]ic))ense(?=s?\b)/g, replaceWith: "ence" }, // [def]ense -> ence
   { regex: /(?<=\b[Cc]ent|[Mm]et)er(?=s?\b)/g, replaceWith: "re" }, // [cent]er -> centre
@@ -22,7 +22,10 @@ const patterns = [
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=s?\b)/g, replaceWith: "logue" }, // [cata]log -> [cata]logue
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=(ing|ed|ers?)\b)/g, replaceWith: "logu" }, //[cata]log[ing] -> [cata]logu[ing]
   { regex: /(?<=[Aa]lumi)num(?=\b)/g, replaceWith: "nium"}, // aluminum -> aluminium
+  // fix stuff that previous ones may have broken
+  { regex: /(?<=([Cc]ollab|[Ee]lab))our(?=a)/g, replaceWith: "or" } // collaborate, elaborate
 ]
+
 
 // applies spelling fix rules to a specified bit of text
 function applySpellingFixes(text) {
@@ -65,4 +68,30 @@ function walkAndFix(root = document.body) {
   }
 }
 
-walkAndFix()
+// function that runs it on everything (including shadow stuff)
+function fixAllTextContent() {
+  walkAndFix(document.body);
+  document.querySelectorAll('*').forEach(el => {
+    if (el.shadowRoot) {
+      walkAndFix(el.shadowRoot);
+    }
+  });
+}
+
+// watch the dom
+function observeDomChanges() {
+  const observer = new MutationObserver(() => {
+    fixAllTextContent();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+}
+
+// run once loaded
+window.addEventListener('load', () => {
+  fixAllTextContent();
+  observeDomChanges();
+});
