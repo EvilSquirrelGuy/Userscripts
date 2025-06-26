@@ -51,7 +51,7 @@ function fixDates() {
     }
 
     // look into level-3 headings (i.e. commit grouping thingies) that don't have the tags
-    let elements = $("h3", "span");
+    let elements = $("h3, span");
 
     for (let element of elements) {
       if (genericDateRegex.test(element.textContent)) {
