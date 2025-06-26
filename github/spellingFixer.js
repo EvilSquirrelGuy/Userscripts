@@ -23,7 +23,7 @@ const patterns = [
   { regex: /(?<=[Ee]nro)ll(?=(ment|ing|ed|s|)\b)/g, replaceWith: "l" }, // [enro]ll[ment] -> [enro]l[ment]
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=s?\b)/g, replaceWith: "logue" }, // [cata]log -> [cata]logue
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=(ing|ed|ers?)\b)/g, replaceWith: "logu" }, //[cata]log[ing] -> [cata]logu[ing]
-  { regex: /(?<=[Aa]lumi)num(?=\b)/g, replaceWith: "nium"}, // aluminium -> aluminium
+  { regex: /(?<=[Aa]lumi)num(?=\b)/g, replaceWith: "nium"}, // aluminum -> aluminium
   // fix stuff that previous ones may have broken
   { regex: /(?<=([Cc]ollab|[Ee]lab))our(?=a)/g, replaceWith: "or" } // collaborate, elaborate
 ]
