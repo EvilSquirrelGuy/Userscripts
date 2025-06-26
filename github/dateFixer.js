@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26h
+// @version      2025.06.26i
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -51,11 +51,11 @@ function fixDates() {
     }
 
     // look into level-3 headings (i.e. commit grouping thingies) that don't have the tags
-    let h3s = document.getElementsByTagName("h3");
+    let elements = $("h3", "span");
 
-    for (let h3 of h3s) {
-      if (genericDateRegex.test(h3.textContent)) {
-        h3.textContent = h3.textContent.replace(genericDateRegex, "$12 $2$15")
+    for (let element of elements) {
+      if (genericDateRegex.test(element.textContent)) {
+        element.textContent = element.textContent.replace(genericDateRegex, "$12 $2$15")
       }
     }
 }
