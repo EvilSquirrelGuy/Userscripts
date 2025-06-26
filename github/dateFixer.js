@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26f
+// @version      2025.06.26g
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -49,14 +49,24 @@ function fixDates() {
     }
 }
 
+const fixedElements = new WeakSet();
+
+// debounce util — delays calls so fixDates runs max once per 250ms
+function debounce(func, wait) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
 
 // run initially
 fixDates();
 
 // then watch for new stuff being added
-const observer = new MutationObserver(() => {
+const observer = new MutationObserver(debounce((mutations) => {
     fixDates(); // reapply formatting whenever DOM changes
-});
+}, 250));
 
 // watch for DOM changes so timestamps can instantly be fixed again
 observer.observe(document.body, {
