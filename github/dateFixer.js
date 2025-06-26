@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26k
+// @version      2025.06.26l
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
 // @icon         https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5d3.png
 // @grant        none
-// @require      http://code.jquery.com/jquery-latest.js
+// @require      https://code.jquery.com/jquery-3.7.1.min.js
 // @updateURL    https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/dateFixer.js
 // @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/dateFixer.js
 // ==/UserScript==
@@ -54,6 +54,7 @@ function fixDates() {
     elements.push(...Array.from(document.getElementsByTagName("span")));
 
     for (let element of elements) {
+      if (Array.from(element.children).some(ch => ch.tagName.toLowerCase() == "relative-time")) continue;
       if (genericDateRegex.test(element.textContent)) {
         element.textContent = element.textContent.replace(genericDateRegex, "$12 $2$15")
       }
