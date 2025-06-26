@@ -2,6 +2,8 @@
 
 A nice collection of userscripts that I wrote to fix various things on sites that mildly annoy me.
 
+These are designed for Violentmonkey, but should work with Tampermonkey as well.
+
 ## Scripts
 
 Scripts are organised into folders based on what website(s) they target. Any scripts in the root of the repository can be assumed to be generic (i.e. run on all sites).
