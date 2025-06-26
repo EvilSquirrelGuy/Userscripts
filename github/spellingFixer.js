@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26k
+// @version      2025.06.26l
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -57,7 +57,7 @@ function walkAndFix(root = document.body) {
 
         while (el) {
 
-          if (["script", "style", "code", "pre", "noscript", "textarea", "input"].includes(el.nodeName.toLowerCase())) {
+          if (["script", "style", "code", "pre", "noscript", "textarea", "input", "file-attachment"].includes(el.nodeName.toLowerCase())) {
             return NodeFilter.FILTER_REJECT;
           }
 
