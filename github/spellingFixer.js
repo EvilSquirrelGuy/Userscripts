@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26i
+// @version      2025.06.26j
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -61,7 +61,7 @@ function walkAndFix(root = document.body) {
             return NodeFilter.FILTER_REJECT;
           }
 
-          if (el.classList && Array.from(el.classList).some(cls => [/^react-code-text$/, /^LatestCommit/, /^DirectoryContent/].some(regex => regex.test(cls)))) {
+          if (el.classList && Array.from(el.classList).some(cls => [/^react-code-text$/, /^LatestCommit/, /^DirectoryContent/, /^cm-line$/].some(regex => regex.test(cls)))) {
             return NodeFilter.FILTER_REJECT;
           }
 
