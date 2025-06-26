@@ -39,7 +39,6 @@ function applySpellingFixes(text) {
 
 // fixes all text in a specified node
 function fixTextInNode(node) {
-  console.log(node.parentNode.nodeName, node.textContent);
   const original = node.textContent;
   const updated = applySpellingFixes(original);
   if (original !== updated) node.textContent = updated;
