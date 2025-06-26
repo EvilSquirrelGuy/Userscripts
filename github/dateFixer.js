@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26m
+// @version      2025.06.26n
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -56,7 +56,7 @@ function fixDates() {
     for (let element of elements) {
       if (Array.from(element.children).some(ch => ch.tagName.toLowerCase() == "relative-time")) continue;
       if (genericDateRegex.test(element.textContent)) {
-        element.textContent = element.textContent.replace(genericDateRegex, "$12 $2$15")
+        element.textContent = element.textContent.replace(genericDateRegex, "$12 $2$16")
       }
     }
 }
