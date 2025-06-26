@@ -55,3 +55,21 @@ This should be able to accurately catch out almost every standard reference to 1
 
 The GitHub version makes use of GitHub's *mostly* accessible format where times are (mostly) identified via the `relative-time` and `time` elements, with a clean timestamp provided as well. As such,
 this makes it very easy to scan for, and correct, these elements. It should also be noted that this version will also scan `#shadow-root` elements, and update hover titles in all relevant places.
+
+Examples:
+
+<img width="199" alt="image" src="https://github.com/user-attachments/assets/325d29b0-4d82-409a-b189-15c1cf83fd17" />
+<img width="280" alt="image" src="https://github.com/user-attachments/assets/37eb6093-c7c0-4432-a627-52de1e7d36b8" />
+
+
+With Script
+
+
+<img width="237" alt="image" src="https://github.com/user-attachments/assets/557acd48-da11-4983-8223-29aa18eb8073" />
+<img width="312" alt="image" src="https://github.com/user-attachments/assets/b93ba869-60e8-4885-bdf7-f0114d613a30" />
+
+Without Script
+
+
+
+
