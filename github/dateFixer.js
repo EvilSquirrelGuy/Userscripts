@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26l
+// @version      2025.06.26m
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -51,7 +51,7 @@ function fixDates() {
 
     // look into level-3 headings (i.e. commit grouping thingies) that don't have the tags
     let elements = Array.from(document.getElementsByTagName("h3"));
-    elements.push(...Array.from(document.getElementsByTagName("span")));
+    // elements.push(...Array.from(document.getElementsByTagName("span")));
 
     for (let element of elements) {
       if (Array.from(element.children).some(ch => ch.tagName.toLowerCase() == "relative-time")) continue;
