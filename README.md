@@ -34,7 +34,7 @@ Example behaviour:
 
 > [!NOTE]
 > This will, unfortunately, not work with numerical dates (e.g. `6/26/2025 -> 26/06/2025`) as these can often be ambiguous, and may risk *'fixing'* already valid dates. While it would
-> be simple to detect for dates where the date is `>= 13`, I decided not to, as this could cause inconsistencies on sites, and it's not a valid for checking if all dates on the site
+> be simple to detect for dates where the date is `>= 13`, I decided not to, as this could cause inconsistencies on sites, and it's not valid for checking if all dates on the site
 > follow one format or another.
 
 ### Times
