@@ -97,7 +97,7 @@ function observeDomChanges() {
 }
 
 // run once loaded
-window.addEventListener('load', () => {
+window.addEventListener('load', setTimeout(() => {
   fixAllTextContent();
   observeDomChanges();
-});
+}, 280));
