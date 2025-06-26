@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26b
+// @version      2025.06.27a
 // @description  Replaces timestamps on most websites with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
-// @match        *
+// @match        https://*/*
+// @match        http://*/*
 // @exclude      https://github.com/*
 // @icon         https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5d3.png
 // @grant        none
