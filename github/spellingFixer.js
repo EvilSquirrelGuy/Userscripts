@@ -61,7 +61,7 @@ function walkAndFix(root = document.body) {
             return NodeFilter.FILTER_REJECT;
           }
 
-          if (el.classList && Array.from(el.classList).some(cls => [/^react-code-text$/, /^LatestCommit/, /^DirectoryContent/, /^cm-(line|content|editor)$/].some(regex => regex.test(cls)))) {
+          if (el.classList && Array.from(el.classList).some(cls => [/^react-code-text$/, /^LatestCommit/, /^DirectoryContent/, /^cm-(line|content|editor)$/, /^c[lm]/].some(regex => regex.test(cls)))) {
             return NodeFilter.FILTER_REJECT;
           }
 
