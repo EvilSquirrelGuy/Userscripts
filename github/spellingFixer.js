@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26b
+// @version      2025.06.26c
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -54,7 +54,10 @@ function walkAndFix(root = document.body) {
         const tag = parent.nodeName.toLowerCase();
 
         // ignore code-y stuff
-        if (["script", "style", "code", "pre", "noscript"].includes(tag)) {
+        if (
+          ["script", "style", "code", "pre", "noscript", "textarea", "input"].includes(tag) || // code stuff
+          ([...parent.classList || []].some(cls => cls.startsWith("DirectoryContent"))) // github directory view
+        ) {
           return NodeFilter.FILTER_REJECT;
         }
 
@@ -81,7 +84,8 @@ function fixAllTextContent() {
 // watch the dom
 function observeDomChanges() {
   const observer = new MutationObserver(() => {
-    fixAllTextContent();
+    fixAllTextContent(); // update page spellings
+    document.title = applySpellingFixes(document.title); // also update page title
   });
 
   observer.observe(document.body, {
