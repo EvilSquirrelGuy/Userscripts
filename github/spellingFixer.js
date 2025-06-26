@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26c
+// @version      2025.06.26d
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
 // @icon         https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.0.2/assets/72x72/1f1ec-1f1e7.png
 // @grant        none
 // @require      http://code.jquery.com/jquery-latest.js
+// @updateURL    https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/spellingFixer.js
+// @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/spellingFixer.js
 // ==/UserScript==
 
 // common replacement rules
