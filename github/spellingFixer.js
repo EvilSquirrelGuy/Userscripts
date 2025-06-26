@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26h
+// @version      2025.06.26i
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -23,7 +23,7 @@ const patterns = [
   { regex: /(?<=[Ee]nro)ll(?=(ment|ing|ed|s|)\b)/g, replaceWith: "l" }, // [enro]ll[ment] -> [enro]l[ment]
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=s?\b)/g, replaceWith: "logue" }, // [cata]log -> [cata]logue
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=(ing|ed|ers?)\b)/g, replaceWith: "logu" }, //[cata]log[ing] -> [cata]logu[ing]
-  { regex: /(?<=[Aa]lumi)num(?=\b)/g, replaceWith: "nium"}, // aluminum -> aluminium
+  { regex: /(?<=[Aa]lumi)num(?=\b)/g, replaceWith: "nium"}, // aluminium -> aluminium
   // fix stuff that previous ones may have broken
   { regex: /(?<=([Cc]ollab|[Ee]lab))our(?=a)/g, replaceWith: "or" } // collaborate, elaborate
 ]
@@ -39,6 +39,7 @@ function applySpellingFixes(text) {
 
 // fixes all text in a specified node
 function fixTextInNode(node) {
+  console.log(node.parentNode.nodeName, node.textContent);
   const original = node.textContent;
   const updated = applySpellingFixes(original);
   if (original !== updated) node.textContent = updated;
@@ -49,23 +50,30 @@ function walkAndFix(root = document.body) {
   const walker = document.createTreeWalker(
     root,
     NodeFilter.SHOW_TEXT,
-    {
-      acceptNode: (node) => {
+      (node) => {
         const parent = node.parentNode;
         if (!parent) return NodeFilter.FILTER_REJECT;
-        const tag = parent.nodeName.toLowerCase();
 
-        // ignore code-y stuff
-        if (
-          ["script", "style", "code", "pre", "noscript", "textarea", "input"].includes(tag) || // code stuff
-          ([...parent.classList || []].some(cls => cls.startsWith("DirectoryContent"))) // github directory view
-        ) {
-          return NodeFilter.FILTER_REJECT;
+        let el = node.parentNode;
+
+        while (el) {
+
+          if (["script", "style", "code", "pre", "noscript", "textarea", "input"].includes(el.nodeName.toLowerCase())) {
+            return NodeFilter.FILTER_REJECT;
+          }
+
+          if (el.classList && Array.from(el.classList).some(cls => [/^react-code-text$/, /^LatestCommit/, /^DirectoryContent/].some(regex => regex.test(cls)))) {
+            return NodeFilter.FILTER_REJECT;
+          }
+
+          if (el.id && ["repos-header-breadcrumb"].includes(el.id)) {
+            return NodeFilter.FILTER_REJECT;
+          }
+        el = el.parentNode;
         }
 
         return NodeFilter.FILTER_ACCEPT;
       }
-    }
   );
 
   while (walker.nextNode()) {
@@ -76,11 +84,11 @@ function walkAndFix(root = document.body) {
 // function that runs it on everything (including shadow stuff)
 function fixAllTextContent() {
   walkAndFix(document.body);
-  document.querySelectorAll('*').forEach(el => {
-    if (el.shadowRoot) {
-      walkAndFix(el.shadowRoot);
-    }
-  });
+  //document.querySelectorAll('*').forEach(el => {
+    //if (el.shadowRoot) {
+    //  walkAndFix(el.shadowRoot);
+    //}
+  //});
 }
 
 // watch the dom
