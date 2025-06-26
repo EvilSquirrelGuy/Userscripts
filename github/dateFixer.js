@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26d
+// @version      2025.06.26e
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -44,7 +44,7 @@ function fixDates() {
       // quick format
       const shortFmt = `${date.toLocaleDateString("en-GB", {day: "2-digit", month: "short"})}`;
       // do we have the year?
-      let hasYear = /\d{4}$/.test(shadowText);
+      let hasYear = /\d{4}$/.test(tm.textContent);
       tm.textContent = shortFmt + (hasYear ? ` ${date.getFullYear()}` : "");
     }
 }
