@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.07.02c
+// @version      2025.07.02d
 // @description  Replaces timestamps on most websites with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://*/*
@@ -72,9 +72,10 @@ window.addEventListener('load', setTimeout(() => {
 }, 300));
 
 // run on iframes too
+// from: https://stackoverflow.com/a/65249968
 waitForKeyElements("iframe, frame", function(frame) {
-  frame.addEventListener('load', function(e) {
-    // give main() the `document` from the frame each time it loads
-    walkAndFix(e.event.contentDocument.root);
+  frame.addEventListener("load", function () {
+    frame.removeAttribute("wfke_found");
   });
+  walkAndFix(frame.contentDocument.root);
 });
