@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.07.01a
+// @version      2025.07.02a
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -29,7 +29,7 @@ function fixDates() {
       // check the special hidden stuff
       let shadowText = rt.shadowRoot?.textContent;
       // if it's an 'on' date, replace element contents
-      if (shadowText.startsWith("on")) {
+      if (shadowText && shadowText.startsWith("on")) {
         let hasYear = /\d{4}$/.test(shadowText);
         // replace contents, optionally adding year if it was originally present
         rt.shadowRoot.textContent = "on " + shortFmt + (hasYear ? ` ${date.getFullYear()}` : "");
