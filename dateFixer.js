@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.27a
+// @version      2025.07.02a
 // @description  Replaces timestamps on most websites with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://*/*
@@ -14,7 +14,7 @@
 // @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/dateFixer.js
 // ==/UserScript==
 
-const genericDateRegex = /(?<!\d(th|st|nd|rd)?\s)(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|Jul?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s([0-3]?\d(th|st|nd|rd)?\b(-[0-3]?\d)?)(,?)(\s\d{4})?/g
+const genericDateRegex = /(?<!\d(th|st|nd|rd)?\s)(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sept?(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s([0-3]?\d(th|st|nd|rd)?\b(-[0-3]?\d)?)(,?)(\s\d{4})?/g
 
 const generic12hTimeRegex = /(?<hr>\d?\d)[:.]?(?<min>\d\d)?[:.]?(?<sec>\d\d)?\s?(?<tt>[ap]m)/gi
 
