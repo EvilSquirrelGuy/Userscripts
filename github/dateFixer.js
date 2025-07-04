@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.07.02b
+// @version      2025.07.04a
 // @description  Replaces timestamps on GitHub with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -11,7 +11,7 @@
 // @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/dateFixer.js
 // ==/UserScript==
 
-const genericDateRegex = /(?<!\d(th|st|nd|rd)?\s)(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|Jul?|Aug(ust)?|Sept?(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s([0-3]?\d(th|st|nd|rd)?\b(-[0-3]?\d)?)(,?)(\s\d{4})?/g
+const genericDateRegex = /(?<!\d(th|st|nd|rd)?\s)(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|Jul?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s([0-3]?\d(th|st|nd|rd)?\b(-[0-3]?\d)?)(,?)(\s\d{4})?/g
 function fixDates() {
     'use strict';
     // find all the times
@@ -21,7 +21,7 @@ function fixDates() {
       // cast to time
       const date = new Date(rt.getAttribute("datetime"));
       // make a short dd MMM date
-      const shortFmt = `${date.toLocaleDateString("en-GB", {day: "2-digit", month: "short"})}`;
+      const shortFmt = `${date.toLocaleDateString("en-GB", {day: "numeric", month: "short"})}`;
 
       // replace the hover title
       rt.title = date.toLocaleString("en-GB", {dateStyle: "medium" ,timeStyle: "long"});
@@ -29,10 +29,10 @@ function fixDates() {
       // check the special hidden stuff
       let shadowText = rt.shadowRoot?.textContent;
       // if it's an 'on' date, replace element contents
-      if (shadowText && shadowText.startsWith("on")) {
+      if (shadowText && ( genericDateRegex.test(shadowText) || shadowText.startsWith("on"))) {
         let hasYear = /\d{4}$/.test(shadowText);
         // replace contents, optionally adding year if it was originally present
-        rt.shadowRoot.textContent = "on " + shortFmt + (hasYear ? ` ${date.getFullYear()}` : "");
+        rt.shadowRoot.textContent = ((shadowText.startsWith("on")) ? "on " : "") + shortFmt + (hasYear ? ` ${date.getFullYear()}` : "");
       }
     }
 
@@ -42,7 +42,7 @@ function fixDates() {
       // make the date
       const date = new Date(tm.getAttribute("datetime") ?? tm.textContent);
       // quick format
-      const shortFmt = `${date.toLocaleDateString("en-GB", {day: "2-digit", month: "short", year: "numeric"})}`;
+      const shortFmt = `${date.toLocaleDateString("en-GB", {day: "numeric", month: "short", year: "numeric"})}`;
       // do we have the year?
       // let hasYear = /\d{4}$/.test(tm.textContent);
       tm.textContent = shortFmt;
@@ -59,8 +59,6 @@ function fixDates() {
       }
     }
 }
-
-// const fixedElements = new WeakSet();
 
 // debounce util — delays calls so fixDates runs max once per 250ms
 function debounce(func, wait) {
