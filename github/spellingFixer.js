@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.06.26n
+// @version      2025.07.27a
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -14,13 +14,13 @@
 
 // common replacement rules
 const patterns = [
-  { regex: /(?<=\w[blmpv]i?)or(?=abefi\w*\b)/g, replaceWith: "our", ignore: ["collaborat", "elaborat"]}, // [col]or -> our
+  { regex: /(?<=\w[blmpv]i?)or(?=[abefi]?)/g, replaceWith: "our", ignore: ["collaborat", "elaborat"]}, // [col]or -> our
   { regex: /(?<=\w[cdglmnrstv])([iy])z(?=[eai])/g, replaceWith: "$1s" }, // [organ]ize -> ise, [anal]yze -> yse
   { regex: /(?<=\b([Dd]ef|[Oo]ff|[Ll]ic))ense(?=s?\b)/g, replaceWith: "ence" }, // [def]ense -> ence
   { regex: /(?<=\b[Cc]ent|[Mm]et)er(?=s?\b)/g, replaceWith: "re" }, // [cent]er -> centre
   { regex: /(?<=\b[Cc]ent)er(?=(ed|ing))/g, replaceWith: "r" }, // [cent]ered/ering -> centred/centring
   { regex: /(?<=\w[ea])l(?=(ed|ing|er|ation)s?)/g, replaceWith: "ll" }, // [cance]l[ed] -> [cance]ll[ed],
-  { regex: /(?<=[Ee]nro)ll(?=(ment|ing|ed|s|)\b)/g, replaceWith: "l" }, // [enro]ll[ment] -> [enro]l[ment]
+  { regex: /(?<=[Ee]nro)ll(?=(ment|s|)\b)/g, replaceWith: "l" }, // [enro]ll[ment] -> [enro]l[ment]
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=s?\b)/g, replaceWith: "logue" }, // [cata]log -> [cata]logue
   { regex: /(?<=([Cc]ata|[Dd]ia))log(?=(ing|ed|ers?)\b)/g, replaceWith: "logu" }, //[cata]log[ing] -> [cata]logu[ing]
   { regex: /(?<=[Aa]lumi)num(?=\b)/g, replaceWith: "nium"}, // aluminum -> aluminium
