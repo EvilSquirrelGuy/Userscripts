@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.07.02d
+// @version      2025.08.21a
 // @description  Replaces timestamps on most websites with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://*/*
@@ -16,7 +16,7 @@
 
 const genericDateRegex = /(?<!\d(th|st|nd|rd)?\s)(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sept?(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s([0-3]?\d(th|st|nd|rd)?\b(-[0-3]?\d)?)(,?)(\s\d{4})?/g
 
-const generic12hTimeRegex = /(?<hr>\d?\d)[:.]?(?<min>\d\d)?[:.]?(?<sec>\d\d)?\s?(?<tt>[ap]m)/gi
+const generic12hTimeRegex = /(?<hr>\d?\d)[:.]?(?<min>\d\d)?[:.]?(?<sec>\d\d)?\s?(?<tt>[ap]\.?m\.?)/gi
 
 function fixDates(text) {
   text = text.replace(genericDateRegex, "$12 $2$16");
