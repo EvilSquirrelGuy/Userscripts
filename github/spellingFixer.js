@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.07.27a
+// @version      2025.08.21a
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -14,16 +14,19 @@
 
 // common replacement rules
 const patterns = [
-  { regex: /(?<=\w[blmpv]i?)or(?=[abefi]?)/g, replaceWith: "our", ignore: ["collaborat", "elaborat"]}, // [col]or -> our
-  { regex: /(?<=\w[cdglmnrstv])([iy])z(?=[eai])/g, replaceWith: "$1s" }, // [organ]ize -> ise, [anal]yze -> yse
-  { regex: /(?<=\b([Dd]ef|[Oo]ff|[Ll]ic))ense(?=s?\b)/g, replaceWith: "ence" }, // [def]ense -> ence
-  { regex: /(?<=\b[Cc]ent|[Mm]et)er(?=s?\b)/g, replaceWith: "re" }, // [cent]er -> centre
-  { regex: /(?<=\b[Cc]ent)er(?=(ed|ing))/g, replaceWith: "r" }, // [cent]ered/ering -> centred/centring
-  { regex: /(?<=\w[ea])l(?=(ed|ing|er|ation)s?)/g, replaceWith: "ll" }, // [cance]l[ed] -> [cance]ll[ed],
-  { regex: /(?<=[Ee]nro)ll(?=(ment|s|)\b)/g, replaceWith: "l" }, // [enro]ll[ment] -> [enro]l[ment]
-  { regex: /(?<=([Cc]ata|[Dd]ia))log(?=s?\b)/g, replaceWith: "logue" }, // [cata]log -> [cata]logue
-  { regex: /(?<=([Cc]ata|[Dd]ia))log(?=(ing|ed|ers?)\b)/g, replaceWith: "logu" }, //[cata]log[ing] -> [cata]logu[ing]
-  { regex: /(?<=[Aa]lumi)num(?=\b)/g, replaceWith: "nium"}, // aluminum -> aluminium
+  {
+    regex: /(?<=\w(dis|in|mis|multi|non|pre|re|sub|un|re|de|bi|tri)?)(arm|behavi|clam|col|endeav|fav|flav|harb|hon|lab|neighb|od|rum|savi|val|vap)or(?=[abefi]?)/g,
+    replaceWith: "$1ur"
+  }, // [col]or -> our
+  { regex: /(?<=\w[cdglmnrstv])([iy])z(?=[eai])/gi, replaceWith: "$1s" }, // [organ]ize -> ise, [anal]yze -> yse
+  { regex: /(?<=\b([Dd]ef|[Oo]ff|[Ll]ic))ense(?=s?\b)/gi, replaceWith: "ence" }, // [def]ense -> ence
+  { regex: /(?<=\b[Cc]ent|[Mm]et)er(?=s?\b)/gi, replaceWith: "re" }, // [cent]er -> centre
+  { regex: /(?<=\b[Cc]ent)er(?=(ed|ing))/gi, replaceWith: "r" }, // [cent]ered/ering -> centred/centring
+  { regex: /(?<=\w[ea])l(?=(ed|ing|er|ation)s?)/gi, replaceWith: "ll" }, // [cance]l[ed] -> [cance]ll[ed],
+  { regex: /(?<=enro)ll(?=(ment|s|)\b)/gi, replaceWith: "l" }, // [enro]ll[ment] -> [enro]l[ment]
+  { regex: /(?<=(cata|dia))log(?=s?\b)/gi, replaceWith: "logue" }, // [cata]log -> [cata]logue
+  { regex: /(?<=(cata|dia))log(?=(ing|ed|ers?)\b)/gi, replaceWith: "logu" }, //[cata]log[ing] -> [cata]logu[ing]
+  { regex: /(?<=alumi)num(?=\b)/gi, replaceWith: "nium"}, // aluminum -> aluminium
   // fix stuff that previous ones may have broken
   { regex: /(?<=([Cc]ollab|[Ee]lab))our(?=a)/g, replaceWith: "or" } // collaborate, elaborate
 ]
