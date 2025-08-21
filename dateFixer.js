@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Timestamp Format Fixer
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.08.21a
+// @version      2025.08.21b
 // @description  Replaces timestamps on most websites with d/m/y formatted dates and 24h time
 // @author       EvilSquirrelGuy
 // @match        https://*/*
@@ -31,7 +31,7 @@ function fixTimes(text) {
       const h = hr.padStart(2, "0");
       const m = min ?? "00";
       const s = sec ?? "00";
-      const mer = tt.toUpperCase();
+      const mer = tt.toUpperCase().replaceAll(".", "");
 
       const date = new Date(`1970-01-01 ${h}:${m}:${s} ${mer}`);
       return date.toLocaleTimeString("en-GB", {
