@@ -10,8 +10,8 @@
 // @icon         https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f5d3.png
 // @grant        none
 // @require      https://git.io/waitForKeyElements.js
-// @updateURL    https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/dateFixer.js
-// @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/dateFixer.js
+// @updateURL    https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/dateFixer.user.js
+// @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/dateFixer.user.js
 // ==/UserScript==
 
 const genericDateRegex = /(?<!\d(th|st|nd|rd)?\s)(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sept?(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s([0-3]?\d(th|st|nd|rd)?\b(-[0-3]?\d)?)(,?)(\s\d{4})?/g

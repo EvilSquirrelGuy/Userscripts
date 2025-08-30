@@ -8,8 +8,8 @@
 // @icon         https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.0.2/assets/72x72/1f1ec-1f1e7.png
 // @grant        none
 // @require      http://code.jquery.com/jquery-latest.js
-// @updateURL    https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/spellingFixer.js
-// @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/spellingFixer.js
+// @updateURL    https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/spellingFixer.user.js
+// @downloadURL  https://github.com/EvilSquirrelGuy/Userscripts/raw/refs/heads/main/github/spellingFixer.user.js
 // ==/UserScript==
 
 // common replacement rules
