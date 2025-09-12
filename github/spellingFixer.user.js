@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.09.12a
+// @version      2025.09.12b
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -20,8 +20,8 @@ const patterns = [
   }, // [col]or -> our
   { regex: /(?<=\w[cdglmnrstv])([iy])z(?=[eai])/gi, replaceWith: "$1s" }, // [organ]ize -> ise, [anal]yze -> yse
   { regex: /(?<=\b([Dd]ef|[Oo]ff|[Ll]ic))ense(?=s?\b)/gi, replaceWith: "ence" }, // [def]ense -> ence
-  { regex: /(?<=\b[Cc]ent|[Mm]et)er(?=s?\b)/gi, replaceWith: "re" }, // [cent]er -> centre
-  { regex: /(?<=\b[Cc]ent)er(?=(ed|ing))/gi, replaceWith: "r" }, // [cent]ered/ering -> centred/centring
+  { regex: /(?<=cent)er(?=s?\b)/gi, replaceWith: "re" }, // [cent]er -> centre
+  { regex: /(?<=cent)er(?=(ed|ing))/gi, replaceWith: "r" }, // [cent]ered/ering -> centred/centring
   { regex: /(?<=\w[ea])l(?=(ed|ing|er|ation)s?)/gi, replaceWith: "ll" }, // [cance]l[ed] -> [cance]ll[ed],
   { regex: /(?<=enro)ll(?=(ment|s|)\b)/gi, replaceWith: "l" }, // [enro]ll[ment] -> [enro]l[ment]
   { regex: /(?<=(cata|dia))log(?=s?\b)/gi, replaceWith: "logue" }, // [cata]log -> [cata]logue
