@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.08.21a
+// @version      2025.09.12a
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -15,7 +15,7 @@
 // common replacement rules
 const patterns = [
   {
-    regex: /(?<=\w(dis|in|mis|multi|non|pre|re|sub|un|re|de|bi|tri)?)(arm|behavi|clam|col|endeav|fav|flav|harb|hon|lab|neighb|od|rum|savi|val|vap)or(?=[abefi]?)/g,
+    regex: /(?<=\b(dis|in|mis|multi|non|pre|re|sub|un|re|de|bi|tri)?)(arm|behavi|clam|col|endeav|fav|flav|harb|hon|lab|neighb|od|rum|savi|val|vap)or(?=[abefi]?)/g,
     replaceWith: "$1ur"
   }, // [col]or -> our
   { regex: /(?<=\w[cdglmnrstv])([iy])z(?=[eai])/gi, replaceWith: "$1s" }, // [organ]ize -> ise, [anal]yze -> yse
@@ -28,7 +28,7 @@ const patterns = [
   { regex: /(?<=(cata|dia))log(?=(ing|ed|ers?)\b)/gi, replaceWith: "logu" }, //[cata]log[ing] -> [cata]logu[ing]
   { regex: /(?<=alumi)num(?=\b)/gi, replaceWith: "nium"}, // aluminum -> aluminium
   // fix stuff that previous ones may have broken
-  { regex: /(?<=([Cc]ollab|[Ee]lab))our(?=a)/g, replaceWith: "or" } // collaborate, elaborate
+  //{ regex: /(?<=([Cc]ollab|[Ee]lab))our(?=a)/g, replaceWith: "or" } // collaborate, elaborate
 ]
 
 
