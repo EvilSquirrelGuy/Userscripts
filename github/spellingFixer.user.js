@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.09.12b
+// @version      2025.09.12c
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
+// @match        https://*.github.com/*
 // @icon         https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.0.2/assets/72x72/1f1ec-1f1e7.png
 // @grant        none
 // @require      http://code.jquery.com/jquery-latest.js
