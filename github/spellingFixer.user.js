@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub British Spellings
 // @namespace    https://github.com/EvilSquirrelGuy/
-// @version      2025.09.12c
+// @version      2025.09.20a
 // @description  Replaces American spellings on GitHub with British ones
 // @author       EvilSquirrelGuy
 // @match        https://github.com/*
@@ -17,7 +17,7 @@
 const patterns = [
   {
     regex: /(?<=\b(dis|in|mis|multi|non|pre|re|sub|un|re|de|bi|tri)?)(arm|behavi|clam|col|endeav|fav|flav|harb|hon|lab|neighb|od|rum|savi|val|vap)or(?=[abefi]?)/g,
-    replaceWith: "$1ur"
+    replaceWith: "$2our"
   }, // [col]or -> our
   { regex: /(?<=\w[cdglmnrstv])([iy])z(?=[eai])/gi, replaceWith: "$1s" }, // [organ]ize -> ise, [anal]yze -> yse
   { regex: /(?<=\b([Dd]ef|[Oo]ff|[Ll]ic))ense(?=s?\b)/gi, replaceWith: "ence" }, // [def]ense -> ence
